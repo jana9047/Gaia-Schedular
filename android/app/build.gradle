@@ -1,0 +1,59 @@
+    plugins {
+        id "com.android.application"
+        id "kotlin-android"
+        id "dev.flutter.flutter-gradle-plugin"
+    }
+
+    android {
+        namespace = "com.example.erp_system"
+        compileSdk = 36
+        ndkVersion = flutter.ndkVersion
+
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+
+        defaultConfig {
+            applicationId = "com.example.erp_system"
+            minSdk = 24
+            targetSdk = 36
+            versionCode = flutter.versionCode
+            versionName = flutter.versionName
+            resValue "string", "flutter_embedding", "2"
+            resValue "bool", "enable_impeller", "false"
+        }
+
+        buildTypes {
+            release {
+                signingConfig = signingConfigs.debug // TODO: Use proper signing config for production
+                minifyEnabled false
+                shrinkResources false
+            }
+        }
+    }
+
+    dependencies {
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.76'
+
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-media-compat'
+    }
+}
+
+    // Force consistent dependency resolution
+    configurations.all {
+        resolutionStrategy {
+         force 'androidx.media:media:1.7.0'
+         force 'org.bouncycastle:bcprov-jdk18on:1.76'
+        }
+    }
+
+    flutter {
+        source = "../.."
+    }

@@ -1,0 +1,3 @@
+android {
+    namespace "com.it_nomads.fluttersecurestorage" // Default namespace for flutter_secure_storage
+}
